@@ -115,25 +115,3 @@
     
 })(jQuery);
 
-
-$('#contactForm').on('submit', function (e) {
-    e.preventDefault();
-
-    $.ajax({
-        url: 'save_contact.php',
-        type: 'POST',
-        data: $(this).serialize(),
-        dataType: 'json',
-        success: function (res) {
-            if (res.status === 'ok') {
-                $('#success').html('<div class="alert alert-success">' + res.message + '</div>');
-                $('#contactForm')[0].reset();
-            } else {
-                $('#success').html('<div class="alert alert-danger">' + res.message + '</div>');
-            }
-        },
-        error: function () {
-            $('#success').html('<div class="alert alert-danger">Error al enviar el mensaje. Intenta más tarde.</div>');
-        }
-    });
-});
